@@ -1,6 +1,10 @@
-# NgBracketsDemo
+# NgBrackets
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+Create and display elimination brackets for tournaments using Angular.
+
+Based on the work of Jakub Hájek (https://codepen.io/jimmyhayek/pen/yJkdEB)
+
+![Alt text](screenshot.png?raw=true)
 
 ## Development server
 
