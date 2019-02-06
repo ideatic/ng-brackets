@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-brackets": [
+        "dist/ng-brackets"
+      ],
+      "ng-brackets/*": [
+        "dist/ng-brackets/*"
+      ]
+    }
   }
 }

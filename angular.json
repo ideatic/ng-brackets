@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "ng-brackets": {
+      "root": "projects/ng-brackets",
+      "sourceRoot": "projects/ng-brackets/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-brackets/tsconfig.lib.json",
+            "project": "projects/ng-brackets/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-brackets/src/test.ts",
+            "tsConfig": "projects/ng-brackets/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-brackets/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-brackets/tsconfig.lib.json",
+              "projects/ng-brackets/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-brackets-demo"

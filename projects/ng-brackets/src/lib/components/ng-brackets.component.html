@@ -1,0 +1,23 @@
+<div *ngFor="let round of rounds; index as i" class="round"
+     [ngClass]="{'straight-right': isStraightLine(i), 'straight-left': isStraightLine(i-1)}">
+    <h3 class="round-title">{{ round.name }}</h3>
+    <ul>
+        <li *ngFor="let fixture of round.fixtures">
+            <div class="fixture" tabindex="0">
+                <ng-container *ngIf="!fixtureTemplate; else customFixtureTemplate">
+                    <table>
+                        <caption>{{ fixture.caption }}</caption>
+                        <tr>
+                            <td class="team home">{{ fixture.home.name }}</td>
+                            <td class="score" [ngClass]="fixture.home.score > fixture.away.score ? 'winner' : ''">{{ fixture.home.score }}</td>
+                            <td class="separator">:</td>
+                            <td class="score" [ngClass]="fixture.away.score > fixture.home.score ? 'winner' : ''">{{ fixture.away.score }}</td>
+                            <td class="team away">{{ fixture.away.name }}</td>
+                        </tr>
+                    </table>
+                </ng-container>
+                <ng-template #customFixtureTemplate [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture}"></ng-template>
+            </div>
+        </li>
+    </ul>
+</div>
