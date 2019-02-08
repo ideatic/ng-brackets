@@ -1,4 +1,4 @@
-<div *ngFor="let round of rounds; index as i" class="round"
+<div *ngFor="let round of rounds; index as i" class="round {{ round.className }}"
      [ngClass]="{'straight-right': isStraightLine(i), 'straight-left': isStraightLine(i-1)}">
     <h3 class="round-title">{{ round.name }}</h3>
     <ul>

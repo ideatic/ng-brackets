@@ -1,6 +1,7 @@
 <h1>ng-brackets example</h1>
 
 <div>
+    <button (click)="bracketsMode = !bracketsMode">Toggle mode</button>
     <button (click)="rounds = examples[0]">Example 1</button>
     <button (click)="rounds = examples[1]">Example 2</button>
     <button (click)="rounds = examples[2]">Example 3</button>
@@ -9,15 +10,15 @@
     <button (click)="rounded = !rounded">Toggle style</button>
 </div>
 
-<ng-brackets [rounds]="rounds" [rounded]="rounded"></ng-brackets>
+<ng-brackets [rounds]="rounds" [mode]="bracketsMode ? 'brackets' : 'list'" [rounded]="rounded"></ng-brackets>
 
 
 <h2 style="margin-top: 2em">Custom template</h2>
-<ng-brackets [rounds]="rounds" [rounded]="rounded">
+<ng-brackets [rounds]="rounds" [mode]="bracketsMode ? 'brackets' : 'list'" [rounded]="rounded">
     <ng-template #fixtureTemplate let-fixture>
         {{ fixture.home.name }} vs {{ fixture.away.name }}
     </ng-template>
 </ng-brackets>
 
 <h2 style="margin-top: 50px">Custom JSON</h2>
-<textarea style="display: block;height: 250px;width: 100%" [(ngModel)]="customJSON"></textarea>
+<textarea style="display: block;height: 250px;width: 100%" [(ngModel)]="customJSON" (ngModelChange)="storeCustomJson()"></textarea>

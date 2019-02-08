@@ -2,6 +2,7 @@ import {Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular
 
 export interface NgBracketsRound {
     name: string;
+    className?: string;
     fixtures: NgBracketsFixture[];
 }
 
@@ -21,13 +22,20 @@ export class NgBracketsComponent {
 
     @Input() public rounds: NgBracketsRound[];
 
-    @HostBinding('class.rounded')
     @Input() public rounded = true;
+
+    @Input() public mode: 'brackets' | 'list' = 'brackets';
 
 
     @ContentChild('fixtureTemplate') fixtureTemplate: TemplateRef<any>;
 
     constructor() {
+    }
+
+
+    @HostBinding('class')
+    public get classes(): string {
+        return (this.rounded ? 'rounded ' : '') + this.mode;
     }
 
     public isStraightLine(i: number) { // Straight line when next round has the same number of fixtures as the current one

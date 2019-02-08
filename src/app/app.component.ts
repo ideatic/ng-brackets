@@ -10,11 +10,13 @@ export class AppComponent implements OnInit {
 
     public rounds: NgBracketsRound[];
     public rounded = true;
+    public bracketsMode = true;
 
-    public customJSON: string='[{"name":"Cuartos de final","fixtures":[{"home":{"id":0,"score":null,"name":"1º clasificado del grupo A","icon":"https://cdn.biwenger.com/img/player.png","url":""},"away":{"id":0,"score":null,"name":"3º clasificado del grupo B","icon":"https://cdn.biwenger.com/img/player.png","url":""},"url":""},{"home":{"id":0,"score":null,"name":"1º clasificado del grupo B","icon":"https://cdn.biwenger.com/img/player.png","url":""},"away":{"id":0,"score":null,"name":"3º clasificado del grupo A","icon":"https://cdn.biwenger.com/img/player.png","url":""},"url":""},{"home":{"id":0,"score":null,"name":"2º clasificado del grupo A","icon":"https://cdn.biwenger.com/img/player.png","url":""},"away":{"id":0,"score":null,"name":"2º clasificado del grupo B","icon":"https://cdn.biwenger.com/img/player.png","url":""},"url":""}]},{"name":"Semifinales","fixtures":[{"home":{"id":0,"score":null,"name":null,"icon":"https://cdn.biwenger.com/img/player.png","url":""},"away":{"id":0,"score":null,"name":null,"icon":"https://cdn.biwenger.com/img/player.png","url":""},"url":""}]},{"name":"Final","fixtures":[{"home":{"id":0,"score":null,"name":null,"icon":"https://cdn.biwenger.com/img/player.png","url":""},"away":{"id":0,"score":null,"name":null,"icon":"https://cdn.biwenger.com/img/player.png","url":""},"url":""}]}]';
+    public customJSON: string = '';
 
     public ngOnInit(): void {
         this.rounds = this.examples[0];
+        this.customJSON = window.localStorage.getItem('ngBracketsCustomJson');
 
         if (this.customJSON) {
             this.useCustomJSON();
@@ -23,6 +25,10 @@ export class AppComponent implements OnInit {
 
     public useCustomJSON() {
         this.rounds = JSON.parse(this.customJSON);
+    }
+
+    public storeCustomJson() {
+        window.localStorage.setItem('ngBracketsCustomJson', this.customJSON);
     }
 
     public examples: NgBracketsRound[][] = [
