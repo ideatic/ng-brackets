@@ -1,6 +1,7 @@
 <div *ngFor="let round of rounds; index as i" class="round {{ round.className }}"
      [ngClass]="{'straight-right': isStraightLine(i), 'straight-left': isStraightLine(i-1)}">
-    <h3 class="round-title">{{ round.name }}</h3>
+    <h3 *ngIf="!roundTitleTemplate; else customRoundTitleTemplate" class="round-title">{{ round.name }}</h3>
+    <ng-template #customRoundTitleTemplate [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"></ng-template>
     <ul>
         <li *ngFor="let fixture of round.fixtures">
             <div class="fixture" tabindex="0">

@@ -19,15 +19,13 @@ export interface NgBracketsFixture {
 })
 export class NgBracketsComponent {
 
-
     @Input() public rounds: NgBracketsRound[];
-
     @Input() public rounded = true;
-
     @Input() public mode: 'brackets' | 'list' = 'brackets';
 
 
     @ContentChild('fixtureTemplate') fixtureTemplate: TemplateRef<any>;
+    @ContentChild('roundTitleTemplate') roundTitleTemplate: TemplateRef<any>;
 
     constructor() {
     }
