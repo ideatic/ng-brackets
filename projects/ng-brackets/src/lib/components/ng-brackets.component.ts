@@ -22,6 +22,7 @@ export class NgBracketsComponent {
     @Input() public rounds: NgBracketsRound[];
     @Input() public rounded = true;
     @Input() public mode: 'brackets' | 'list' = 'brackets';
+    @Input() public fixtureHeight: number;
 
 
     @ContentChild('fixtureTemplate') fixtureTemplate: TemplateRef<any>;
@@ -36,8 +37,21 @@ export class NgBracketsComponent {
         return (this.rounded ? 'rounded ' : '') + this.mode;
     }
 
-    public isStraightLine(i: number) { // Straight line when next round has the same number of fixtures as the current one
-        const currentRound = this.rounds[i];
-        return currentRound && this.rounds[i + 1] && currentRound.fixtures.length == this.rounds[i + 1].fixtures.length;
+    public isStraightLine(roundIndex: number) { // Straight line when next round has the same number of fixtures as the current one
+        const currentRound = this.rounds[roundIndex];
+        return currentRound && this.rounds[roundIndex + 1] && currentRound.fixtures.length == this.rounds[roundIndex + 1].fixtures.length;
+    }
+
+    public calculateRoundHeightFactor(round: NgBracketsRound): number {
+        if (this.mode == 'list' || !this.fixtureHeight) {
+            return null;
+        }
+
+        let maxFixtures = 0;
+        for (const r of this.rounds) {
+            maxFixtures = Math.max(r.fixtures.length, maxFixtures);
+        }
+
+        return maxFixtures / round.fixtures.length;
     }
 }

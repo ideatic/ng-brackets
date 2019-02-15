@@ -1,9 +1,14 @@
-<div *ngFor="let round of rounds; index as i" class="round {{ round.className }}"
-     [ngClass]="{'straight-right': isStraightLine(i), 'straight-left': isStraightLine(i-1)}">
+<div *ngFor="let round of rounds; let index = index" class="round {{ round.className }}"
+     [ngClass]="{'straight-right': isStraightLine(index), 'straight-left': isStraightLine(index - 1)}">
     <h3 *ngIf="!roundTitleTemplate; else customRoundTitleTemplate" class="round-title">{{ round.name }}</h3>
     <ng-template #customRoundTitleTemplate [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"></ng-template>
+
+    <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"></ng-template>
+</div>
+
+<ng-template #roundFixtures let-round="round" let-heightFactor="heightFactor">
     <ul>
-        <li *ngFor="let fixture of round.fixtures">
+        <li *ngFor="let fixture of round.fixtures" [ngStyle]="{height: heightFactor ? ((fixtureHeight * heightFactor) + 'px') : undefined }">
             <div class="fixture" tabindex="0">
                 <ng-container *ngIf="!fixtureTemplate; else customFixtureTemplate">
                     <table>
@@ -21,4 +26,4 @@
             </div>
         </li>
     </ul>
-</div>
+</ng-template>
