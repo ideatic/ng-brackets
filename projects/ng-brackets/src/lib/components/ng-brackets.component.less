@@ -51,6 +51,10 @@
   display: block;
   margin-left: -3px;
   flex: 1;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .round-title {
@@ -71,7 +75,6 @@ ul {
   justify-content: center;
   height: 100%;
   min-height: 100%;
-  border-bottom: 1px dashed #e5e5e5;
   list-style: none;
   //padding-bottom: 2em;
   //margin-bottom: 2em;
@@ -85,11 +88,14 @@ ul {
   @media (min-width: @breakpoint-sm) {
     margin-bottom: 0;
     padding-bottom: 0;
-    border-bottom: 0;
   }
 
   :host(.brackets) & {
     border-right: 1px dashed #e5e5e5;
+  }
+
+  :host(.list) & {
+    border-bottom: 1px dashed #e5e5e5;
   }
 
   .round:last-child & {
