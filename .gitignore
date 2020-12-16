@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+mklinks.bat
 
 # dependencies
 /node_modules
