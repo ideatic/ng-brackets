@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgBracketsRound} from "../../projects/ng-brackets/src/lib/components/ng-brackets.component";
+import {NgBracketsRound} from '../../projects/ng-brackets/src/lib/components/ng-brackets.component';
 
 @Component({
     selector: 'app-root',

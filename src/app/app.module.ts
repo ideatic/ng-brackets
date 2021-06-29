@@ -1,8 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {NgBracketsModule} from "../../projects/ng-brackets/src/lib/ng-brackets.module";
-import {FormsModule} from "@angular/forms";
+import {NgBracketsModule} from '../../projects/ng-brackets/src/lib/ng-brackets.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
