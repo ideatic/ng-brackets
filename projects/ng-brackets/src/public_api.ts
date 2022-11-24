@@ -3,4 +3,3 @@
  */
 
 export * from './lib/components/ng-brackets.component';
-export * from './lib/ng-brackets.module';

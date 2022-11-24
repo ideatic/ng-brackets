@@ -1,4 +1,5 @@
 import {Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
+import {CommonModule} from "@angular/common";
 
 export interface NgBracketsRound {
   name: string;
@@ -14,6 +15,8 @@ export interface NgBracketsFixture {
 
 @Component({
   selector: 'ng-brackets',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './ng-brackets.component.html',
   styleUrls: ['./ng-brackets.component.less']
 })
@@ -24,27 +27,22 @@ export class NgBracketsComponent {
   @Input() public mode: 'brackets' | 'list' = 'brackets';
   @Input() public fixtureHeight: number;
 
-
-  @ContentChild('fixtureTemplate', {static: false}) fixtureTemplate: TemplateRef<any>;
-  @ContentChild('roundTitleTemplate', {static: false}) roundTitleTemplate: TemplateRef<any>;
-
-  constructor() {
-  }
-
+  @ContentChild('fixtureTemplate', {static: false}) protected fixtureTemplate: TemplateRef<any>;
+  @ContentChild('roundTitleTemplate', {static: false}) protected roundTitleTemplate: TemplateRef<any>;
 
   @HostBinding('class')
-  public get classes(): string {
+  private get _classes(): string {
     return (this.rounded ? 'rounded ' : '') + this.mode;
   }
 
-  public isStraightLine(roundIndex: number) { // Straight line when next round has the same number of fixtures as the current one
+  protected isStraightLine(roundIndex: number) { // Straight line when next round has the same number of fixtures as the current one
     const currentRound = this.rounds[roundIndex];
     return currentRound
       && this.rounds[roundIndex + 1]
       && currentRound.fixtures.length <= this.rounds[roundIndex + 1].fixtures.length;
   }
 
-  public calculateRoundHeightFactor(round: NgBracketsRound): number {
+  protected calculateRoundHeightFactor(round: NgBracketsRound): number {
     if (this.mode == 'list' || !this.fixtureHeight) {
       return null;
     }
