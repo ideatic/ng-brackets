@@ -5,14 +5,14 @@
   <!-- Round title -->
   <ng-template [ngIf]="roundTitleTemplate"
                [ngIfElse]="defaultRoundTitleTemplate"
-               [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"></ng-template>
+               [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"/>
 
   <ng-template #defaultRoundTitleTemplate>
     <h3 class="round-title">{{ round.name }}</h3>
   </ng-template>
 
   <!-- Round fixtures -->
-  <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"></ng-template>
+  <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"/>
 </div>
 
 <ng-template #roundFixtures let-round="round" let-heightFactor="heightFactor">
@@ -21,7 +21,7 @@
       <div class="fixture" tabindex="0">
         <ng-template [ngIf]="fixtureTemplate"
                      [ngIfElse]="defaultFixtureTemplate"
-                     [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"></ng-template>
+                     [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
 
         <ng-template #defaultFixtureTemplate>
           <table>
