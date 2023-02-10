@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
     public rounded = true;
     public bracketsMode = true;
 
-    public customJSON: string = '';
+    public customJSON = '';
 
     public ngOnInit(): void {
         this.rounds = this.examples[0];
