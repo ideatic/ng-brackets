@@ -1,41 +1,39 @@
-<div *ngFor="let round of rounds; let index = index"
-     class="round {{ round.className }}"
-     [ngClass]="{'straight-right': isStraightLine(index), 'straight-left': isStraightLine(index - 1)}">
+@for (round of rounds;track round;let index = $index) {
+  <div class="round {{ round.className }}" [class.straight-right]="isStraightLine(index)" [class.straight-left]="isStraightLine(index - 1)">
 
-  <!-- Round title -->
-  <ng-template [ngIf]="roundTitleTemplate"
-               [ngIfElse]="defaultRoundTitleTemplate"
-               [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"/>
+    <!-- Round title -->
+    @if (roundTitleTemplate) {
+      <ng-template [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"/>
+    } @else {
+      <h3 class="round-title">{{ round.name }}</h3>
+    }
 
-  <ng-template #defaultRoundTitleTemplate>
-    <h3 class="round-title">{{ round.name }}</h3>
-  </ng-template>
-
-  <!-- Round fixtures -->
-  <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"/>
-</div>
+    <!-- Round fixtures -->
+    <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"/>
+  </div>
+}
 
 <ng-template #roundFixtures let-round="round" let-heightFactor="heightFactor">
   <ul>
-    <li *ngFor="let fixture of round.fixtures" [ngStyle]="{height: heightFactor ? ((fixtureHeight * heightFactor) + 'px') : undefined }">
-      <div class="fixture" tabindex="0">
-        <ng-template [ngIf]="fixtureTemplate"
-                     [ngIfElse]="defaultFixtureTemplate"
-                     [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
-
-        <ng-template #defaultFixtureTemplate>
-          <table>
-            <caption>{{ fixture.caption }}</caption>
-            <tr>
-              <td class="team home">{{ fixture.home.name }}</td>
-              <td class="score" [ngClass]="fixture.home.score > fixture.away.score ? 'winner' : ''">{{ fixture.home.score }}</td>
-              <td class="separator">:</td>
-              <td class="score" [ngClass]="fixture.away.score > fixture.home.score ? 'winner' : ''">{{ fixture.away.score }}</td>
-              <td class="team away">{{ fixture.away.name }}</td>
-            </tr>
-          </table>
-        </ng-template>
-      </div>
-    </li>
+    @for (fixture of round.fixtures;track fixture) {
+      <li [style.height.px]="heightFactor ? (fixtureHeight * heightFactor) : null">
+        <div class="fixture" tabindex="0">
+          @if (fixtureTemplate) {
+            <ng-template [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
+          } @else {
+            <table>
+              <caption>{{ fixture.caption }}</caption>
+              <tr>
+                <td class="team home">{{ fixture.home.name }}</td>
+                <td class="score" [class]="fixture.home.score > fixture.away.score ? 'winner' : ''">{{ fixture.home.score }}</td>
+                <td class="separator">:</td>
+                <td class="score" [class]="fixture.away.score > fixture.home.score ? 'winner' : ''">{{ fixture.away.score }}</td>
+                <td class="team away">{{ fixture.away.name }}</td>
+              </tr>
+            </table>
+          }
+        </div>
+      </li>
+    }
   </ul>
 </ng-template>

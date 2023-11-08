@@ -1,5 +1,5 @@
 import {Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 
 export interface NgBracketsRound {
   name: string;
@@ -16,9 +16,9 @@ export interface NgBracketsFixture {
 @Component({
   selector: 'ng-brackets',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgTemplateOutlet],
   templateUrl: './ng-brackets.component.html',
-  styleUrls: ['./ng-brackets.component.less']
+  styleUrl: './ng-brackets.component.less'
 })
 export class NgBracketsComponent {
 
