@@ -1,4 +1,4 @@
-import {Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
 
 export interface NgBracketsRound {
@@ -18,10 +18,10 @@ export interface NgBracketsFixture {
   standalone: true,
   imports: [NgTemplateOutlet],
   templateUrl: './ng-brackets.component.html',
-  styleUrl: './ng-brackets.component.less'
+  styleUrl: './ng-brackets.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgBracketsComponent {
-
   @Input() public rounds: NgBracketsRound[];
   @Input() public rounded = true;
   @Input() public mode: 'brackets' | 'list' = 'brackets';
