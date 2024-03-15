@@ -2,8 +2,8 @@
   <div class="round {{ round.className }}" [class.straight-right]="isStraightLine(index)" [class.straight-left]="isStraightLine(index - 1)">
 
     <!-- Round title -->
-    @if (roundTitleTemplate) {
-      <ng-template [ngTemplateOutlet]="roundTitleTemplate" [ngTemplateOutletContext]="{$implicit: round}"/>
+    @if (roundTitleTemplate()) {
+      <ng-template [ngTemplateOutlet]="roundTitleTemplate()" [ngTemplateOutletContext]="{$implicit: round}"/>
     } @else {
       <h3 class="round-title">{{ round.name }}</h3>
     }
@@ -18,8 +18,8 @@
     @for (fixture of round.fixtures; track fixture) {
       <li [style.height.px]="heightFactor ? (fixtureHeight * heightFactor) : null">
         <div class="fixture" tabindex="0">
-          @if (fixtureTemplate) {
-            <ng-template [ngTemplateOutlet]="fixtureTemplate" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
+          @if (fixtureTemplate()) {
+            <ng-template [ngTemplateOutlet]="fixtureTemplate()" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
           } @else {
             <table>
               <caption>{{ fixture.caption }}</caption>

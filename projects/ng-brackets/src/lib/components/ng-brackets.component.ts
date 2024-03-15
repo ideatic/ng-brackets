@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
+import {ChangeDetectionStrategy, Component, contentChild, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
 
 export interface NgBracketsRound {
@@ -27,8 +27,8 @@ export class NgBracketsComponent {
   @Input() public mode: 'brackets' | 'list' = 'brackets';
   @Input() public fixtureHeight: number;
 
-  @ContentChild('fixtureTemplate', {static: false}) protected fixtureTemplate: TemplateRef<any>;
-  @ContentChild('roundTitleTemplate', {static: false}) protected roundTitleTemplate: TemplateRef<any>;
+  protected fixtureTemplate = contentChild.required('fixtureTemplate', {read: TemplateRef});
+  protected roundTitleTemplate = contentChild.required('roundTitleTemplate', {read: TemplateRef});
 
   @HostBinding('class')
   private get _classes(): string {
