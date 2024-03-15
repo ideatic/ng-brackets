@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, contentChild, ContentChild, HostBinding, Input, TemplateRef} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
+import {ChangeDetectionStrategy, Component, contentChild, HostBinding, Input, TemplateRef} from '@angular/core';
 
 export interface NgBracketsRound {
   name: string;
