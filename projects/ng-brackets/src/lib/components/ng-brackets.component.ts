@@ -16,10 +16,10 @@ export interface NgBracketsFixture {
 @Component({
   selector: 'ng-brackets',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgTemplateOutlet],
   templateUrl: './ng-brackets.component.html',
-  styleUrl: './ng-brackets.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './ng-brackets.component.less'
 })
 export class NgBracketsComponent {
   @Input() public rounds: NgBracketsRound[];
