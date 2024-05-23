@@ -1,5 +1,5 @@
-@for (round of rounds; track round; let index = $index) {
-  <div class="round {{ round.className }}" [class.straight-right]="isStraightLine(index)" [class.straight-left]="isStraightLine(index - 1)">
+@for (round of rounds; track round) {
+  <div class="round {{ round.className }}" [class.straight-right]="isStraightLine($index)" [class.straight-left]="isStraightLine($index - 1)">
 
     <!-- Round title -->
     @if (roundTitleTemplate()) {
