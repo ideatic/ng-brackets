@@ -26,8 +26,8 @@ export class NgBracketsComponent {
   @Input() public mode: 'brackets' | 'list' = 'brackets';
   @Input() public fixtureHeight: number;
 
-  protected fixtureTemplate = contentChild.required('fixtureTemplate', {read: TemplateRef});
-  protected roundTitleTemplate = contentChild.required('roundTitleTemplate', {read: TemplateRef});
+  protected readonly fixtureTemplate = contentChild.required('fixtureTemplate', {read: TemplateRef});
+  protected readonly roundTitleTemplate = contentChild.required('roundTitleTemplate', {read: TemplateRef});
 
   @HostBinding('class')
   private get _classes(): string {
