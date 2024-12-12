@@ -1,4 +1,4 @@
-@for (round of rounds; track round) {
+@for (round of rounds(); track round) {
   <div class="round {{ round.className }}" [class.straight-right]="isStraightLine($index)" [class.straight-left]="isStraightLine($index - 1)">
 
     <!-- Round title -->
@@ -16,7 +16,7 @@
 <ng-template #roundFixtures let-round="round" let-heightFactor="heightFactor">
   <ul>
     @for (fixture of round.fixtures; track fixture) {
-      <li [style.height.px]="heightFactor ? (fixtureHeight * heightFactor) : null">
+      <li [style.height.px]="heightFactor ? (fixtureHeight() * heightFactor) : null">
         <div class="fixture" tabindex="0">
           @if (fixtureTemplate()) {
             <ng-template [ngTemplateOutlet]="fixtureTemplate()" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>

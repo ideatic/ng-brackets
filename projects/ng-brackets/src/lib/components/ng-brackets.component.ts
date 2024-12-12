@@ -1,5 +1,5 @@
 import {NgTemplateOutlet} from "@angular/common";
-import {ChangeDetectionStrategy, Component, contentChild, HostBinding, Input, TemplateRef} from '@angular/core';
+import {ChangeDetectionStrategy, Component, contentChild, HostBinding, TemplateRef, input} from '@angular/core';
 
 export interface NgBracketsRound {
   name: string;
@@ -21,33 +21,33 @@ export interface NgBracketsFixture {
     styleUrl: './ng-brackets.component.less'
 })
 export class NgBracketsComponent {
-  @Input() public rounds: NgBracketsRound[];
-  @Input() public rounded = true;
-  @Input() public mode: 'brackets' | 'list' = 'brackets';
-  @Input() public fixtureHeight: number;
+  public readonly rounds = input<NgBracketsRound[]>(undefined);
+  public readonly rounded = input(true);
+  public readonly mode = input<'brackets' | 'list'>('brackets');
+  public readonly fixtureHeight = input<number>(undefined);
 
   protected readonly fixtureTemplate = contentChild.required('fixtureTemplate', {read: TemplateRef});
   protected readonly roundTitleTemplate = contentChild.required('roundTitleTemplate', {read: TemplateRef});
 
   @HostBinding('class')
   private get _classes(): string {
-    return (this.rounded ? 'rounded ' : '') + this.mode;
+    return (this.rounded() ? 'rounded ' : '') + this.mode();
   }
 
   protected isStraightLine(roundIndex: number) { // Straight line when next round has the same number of fixtures as the current one
-    const currentRound = this.rounds[roundIndex];
+    const currentRound = this.rounds()[roundIndex];
     return currentRound
-      && this.rounds[roundIndex + 1]
-      && currentRound.fixtures.length <= this.rounds[roundIndex + 1].fixtures.length;
+      && this.rounds()[roundIndex + 1]
+      && currentRound.fixtures.length <= this.rounds()[roundIndex + 1].fixtures.length;
   }
 
   protected calculateRoundHeightFactor(round: NgBracketsRound): number {
-    if (this.mode == 'list' || !this.fixtureHeight) {
+    if (this.mode() == 'list' || !this.fixtureHeight()) {
       return null;
     }
 
     let maxFixtures = 0;
-    for (const r of this.rounds) {
+    for (const r of this.rounds()) {
       maxFixtures = Math.max(r.fixtures.length, maxFixtures);
     }
 
