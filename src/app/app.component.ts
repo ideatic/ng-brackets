@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {NgBracketsRound} from '../../projects/ng-brackets/src/lib/components/ng-brackets.component';
+import type { OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import type {NgBracketsRound} from '../../projects/ng-brackets/src/lib/components/ng-brackets.component';
 
 // eslint-disable-next-line
 @Component({
