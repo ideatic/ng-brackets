@@ -3,13 +3,13 @@
 
     <!-- Round title -->
     @if (roundTitleTemplate()) {
-      <ng-template [ngTemplateOutlet]="roundTitleTemplate()" [ngTemplateOutletContext]="{$implicit: round}"/>
+      <ng-container [ngTemplateOutlet]="roundTitleTemplate()" [ngTemplateOutletContext]="{$implicit: round}"/>
     } @else {
       <h3 class="round-title">{{ round.name }}</h3>
     }
 
     <!-- Round fixtures -->
-    <ng-template [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"/>
+    <ng-container [ngTemplateOutlet]="roundFixtures" [ngTemplateOutletContext]="{round: round, heightFactor: calculateRoundHeightFactor(round)}"/>
   </div>
 }
 
@@ -19,7 +19,7 @@
       <li [style.height.px]="heightFactor ? (fixtureHeight() * heightFactor) : null">
         <div class="fixture" tabindex="0">
           @if (fixtureTemplate()) {
-            <ng-template [ngTemplateOutlet]="fixtureTemplate()" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
+            <ng-container [ngTemplateOutlet]="fixtureTemplate()" [ngTemplateOutletContext]="{$implicit: fixture, round: round}"/>
           } @else {
             <table>
               <caption>{{ fixture.caption }}</caption>
