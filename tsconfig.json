@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "downlevelIteration": true,
     "sourceMap": true,
     "declaration": false,
     "module": "es2020",
@@ -11,20 +10,11 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "ng-brackets": [
-        "dist/ng-brackets"
-      ],
-      "ng-brackets/*": [
-        "dist/ng-brackets/*"
-      ]
+      "ng-brackets": ["dist/ng-brackets"],
+      "ng-brackets/*": ["dist/ng-brackets/*"]
     }
   }
 }

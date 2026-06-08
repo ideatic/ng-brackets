@@ -1,6 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   contentChild,
   HostBinding,
@@ -22,7 +21,6 @@ export interface NgBracketsFixture {
 
 @Component({
   selector: 'ng-brackets',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgTemplateOutlet],
   templateUrl: './ng-brackets.component.html',
   styleUrl: './ng-brackets.component.less'

@@ -2,7 +2,7 @@ import type { OnInit} from '@angular/core';
 import {Component} from '@angular/core';
 import type {NgBracketsRound} from '../../projects/ng-brackets/src/lib/components/ng-brackets.component';
 
-// eslint-disable-next-line
+ 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
